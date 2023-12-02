@@ -10,17 +10,19 @@ let rec string_list_to_char_list_list lst new_lst =
 
 let rec calculate_calibration_for_line line first last = 
   match line with
-  | [] -> printf "Calibration for line: %d\n" (first * 10 + last); (first * 10 + last)
-  | '0' .. '9' as ch :: tail -> if first = 0 then
-    calculate_calibration_for_line tail (Char.to_int ch) 0 else
-    calculate_calibration_for_line tail first (Char.to_int ch)
+  | [] -> if last <> 0 
+    then (first * 10 + last)
+    else (first * 10 + first)
+  | '0' .. '9' as ch :: tail -> if first = 0 
+    then calculate_calibration_for_line tail ((Char.to_int ch) - 48) 0 
+    else calculate_calibration_for_line tail first ((Char.to_int ch) - 48)
   | _ :: tail -> calculate_calibration_for_line tail first last
 
 let part1 lines =
   let rec part1' lines sum = 
     match lines with
     | [] -> sum
-    | line :: lines -> part1' lines (calculate_calibration_for_line line 0 0)
+    | line :: lines -> part1' lines ((calculate_calibration_for_line line 0 0) + sum)
   in part1' lines 0
 
 
