@@ -1,4 +1,4 @@
-(executable
- (public_name AoC2023)
- (name day01)
- (libraries AoC2023 base core))
+(executables
+  (names day01 day02)
+  (public_names day01 day02)
+  (libraries AoC2023 core base))

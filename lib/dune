@@ -1,2 +1,3 @@
 (library
- (name AoC2023))
+ (name AoC2023)
+ (libraries core))

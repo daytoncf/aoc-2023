@@ -25,8 +25,11 @@ let part1 lines =
     | line :: lines -> part1' lines ((calculate_calibration_for_line line 0 0) + sum)
   in part1' lines 0
 
-type case = string * int
+let solve_day1_part1 =
+  let lines = AoC2023.Util.parse_input_file "./input/input01.txt" in
+  printf "%d\n" (part1 (string_list_to_char_list_list lines []))
 
+type case = string * int
 let cases_map : case list = [
   ("one", 1);
   ("two", 2);
@@ -74,14 +77,8 @@ let calculate_calibration line =
 let part2 lines =
   List.fold lines ~init:0 ~f:(fun acc line -> acc + calculate_calibration line)
 
-let solve_day1_part1 =
-  let input = In_channel.read_all "input.txt" in
-  let lines = String.split_lines input in
-  printf "%d\n" (part1 (string_list_to_char_list_list lines []))
-
 let solve_day1_part2 =
-  let input = In_channel.read_all "input.txt" in
-  let lines = String.split_lines input in
+  let lines = AoC2023.Util.parse_input_file "./input/input01.txt" in
   printf "%d\n" (part2 lines)
 
 let () = 
